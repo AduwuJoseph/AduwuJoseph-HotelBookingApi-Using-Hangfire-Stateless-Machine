@@ -16,6 +16,7 @@ namespace HotelBooking.MongoDBClient.Services
         Task DeleteBooking(string id);
         Task UpdateBooking(Booking r);
         IEnumerable<Booking> GetBookingByStatus(string status);
+        IEnumerable<Booking> GetBookingByCustomerId(string id);
         IEnumerable<Booking> GetBookingByCost(decimal cost);
         #endregion
 
@@ -25,18 +26,18 @@ namespace HotelBooking.MongoDBClient.Services
     }
     public class BookingService : IBookingService
     {
-        private readonly IHotelBookingMongoRepository<Room> _roomRepository;
+        private readonly IHotelBookingMongoRepository<Booking> _bookingRepository;
 
-        public BookingService(IHotelBookingMongoRepository<Room> roomRepository)
+        public BookingService(IHotelBookingMongoRepository<Booking> bookingRepository)
         {
-            _roomRepository = roomRepository;
+            _bookingRepository = bookingRepository;
         }
 
-        public async Task AddRoom(Room room)
+        public async Task AddBooking(Booking b)
         {
             try
             {
-                await _roomRepository.InsertOneAsync(room);
+                await _bookingRepository.InsertOneAsync(b);
             }
             catch(Exception e)
             {
@@ -44,40 +45,47 @@ namespace HotelBooking.MongoDBClient.Services
             }
         }
 
-        public IEnumerable<Room> GetRoomByStatus( string status)
+        public IEnumerable<Booking> GetBookingByStatus( string status)
         {
-            var rooms = _roomRepository.FilterBy(
+            var rooms = _bookingRepository.FilterBy(
                 filter => filter.Status == status
             );
             return rooms;
         }
-        public IEnumerable<Room> GetAllRooms()
+        public IEnumerable<Booking> GetBookingByCustomerId(string id)
         {
-            return _roomRepository.AsQueryable(); ;
+            var rooms = _bookingRepository.FilterBy(
+                filter => filter.CustomerId == id
+            );
+            return rooms;
+        }
+        public IEnumerable<Booking> GetAllBookings()
+        {
+            return _bookingRepository.AsQueryable(); ;
         }
 
-        public async Task<Room> GetByIdAsync(string id)
+        public async Task<Booking> GetByIdAsync(string id)
         {
-            var room = await _roomRepository.FindByIdAsync(id);
+            var room = await _bookingRepository.FindByIdAsync(id);
             return room;
         }
 
-        public async Task DeleteRoom(string id)
+        public async Task DeleteBooking(string id)
         {
-            await _roomRepository.DeleteByIdAsync(id);
+            await _bookingRepository.DeleteByIdAsync(id);
         }
 
-        public IEnumerable<Room> GetRoomByCost(decimal cost)
+        public IEnumerable<Booking> GetBookingByCost(decimal cost)
         {
-            var rooms = _roomRepository.FilterBy(
-                   filter => filter.Cost == cost
+            var rooms = _bookingRepository.FilterBy(
+                   filter => filter.TotalCost == cost
                );
             return rooms;
         }
 
-        public async Task UpdateRoom(Room r)
+        public async Task UpdateBooking(Booking r)
         {
-            await _roomRepository.ReplaceOneAsync(r);
+            await _bookingRepository.ReplaceOneAsync(r);
         }
     }
 }
