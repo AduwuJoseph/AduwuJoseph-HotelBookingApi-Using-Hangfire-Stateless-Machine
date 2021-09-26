@@ -1,0 +1,9 @@
+C:\Project\2021\HotelBookingApp\HotelBooking.MongoDBClient\bin\Debug\netstandard2.0\HotelBooking.MongoDBClient.deps.json
+C:\Project\2021\HotelBookingApp\HotelBooking.MongoDBClient\bin\Debug\netstandard2.0\HotelBooking.MongoDBClient.dll
+C:\Project\2021\HotelBookingApp\HotelBooking.MongoDBClient\bin\Debug\netstandard2.0\HotelBooking.MongoDBClient.pdb
+C:\Project\2021\HotelBookingApp\HotelBooking.MongoDBClient\obj\Debug\netstandard2.0\HotelBooking.MongoDBClient.AssemblyInfoInputs.cache
+C:\Project\2021\HotelBookingApp\HotelBooking.MongoDBClient\obj\Debug\netstandard2.0\HotelBooking.MongoDBClient.AssemblyInfo.cs
+C:\Project\2021\HotelBookingApp\HotelBooking.MongoDBClient\obj\Debug\netstandard2.0\HotelBooking.MongoDBClient.csproj.CoreCompileInputs.cache
+C:\Project\2021\HotelBookingApp\HotelBooking.MongoDBClient\obj\Debug\netstandard2.0\HotelBooking.MongoDBClient.dll
+C:\Project\2021\HotelBookingApp\HotelBooking.MongoDBClient\obj\Debug\netstandard2.0\HotelBooking.MongoDBClient.pdb
+C:\Project\2021\HotelBookingApp\HotelBooking.MongoDBClient\obj\Debug\netstandard2.0\HotelBooking.MongoDBClient.csproj.AssemblyReference.cache
