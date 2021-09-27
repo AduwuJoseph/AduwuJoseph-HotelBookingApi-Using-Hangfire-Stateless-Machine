@@ -4,11 +4,11 @@ using Hangfire.Mongo.Migration.Strategies;
 using Hangfire.Mongo.Migration.Strategies.Backup;
 using Hangfire.SqlServer;
 using HotelBooking.Api.Helpers;
-using HotelBooking.Api.Repositories;
 using HotelBooking.MongoDBClient;
 using HotelBooking.MongoDBClient.Infrastructures;
 using HotelBooking.MongoDBClient.Infrastructures.Interfaces;
 using HotelBooking.MongoDBClient.Repositories;
+using HotelBooking.MongoDBClient.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -117,23 +117,27 @@ namespace HotelBooking.Api
 
         public void RegisterDbDependancies(IServiceCollection services)
         {
-            //var connectionString = Configuration.GetConnectionString("DefaultConnection");
-            //var dbname = Configuration.GetConnectionString("DatabaseName");
-            //services.AddSingleton<IDatabaseContext>(new DatabaseContext(
-            //    connectionString,
-            //    dbname));
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            var dbname = Configuration.GetConnectionString("DatabaseName");
+            services.AddSingleton<IDatabaseContext>(new DatabaseContext(
+                connectionString,
+                dbname));
 
 
-            // requires using Microsoft.Extensions.Options
-            services.Configure<DatabaseSettings>(
-                Configuration.GetSection(nameof(DatabaseSettings)));
+            //// requires using Microsoft.Extensions.Options
+            //services.Configure<DatabaseSettings>(
+            //    Configuration.GetSection(nameof(DatabaseSettings)));
 
-            services.AddSingleton<DatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+            //services.AddSingleton<DatabaseSettings>(sp =>
+            //    sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
 
-            services.AddScoped(typeof(IHotelBookingMongoRepository<>), typeof(HotelBookingMongoRepository<>));
+            services.AddSingleton(typeof(IHotelBookingMongoRepository<>), typeof(HotelBookingMongoRepository<>));
 
             services.AddSingleton<IHangFireOpRepository, HangFireOpRepository>();
+            services.AddScoped<IBookingService, BookingService>();
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IHotelServiceService, HotelServiceService>();
+            services.AddScoped<IRoomService, RoomService>();
         }
     }
 }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace HotelBooking.MongoDBClient.Infrastructures
 {
-    public class DatabaseSettings : IDatabaseSettings
+    public static class DatabaseSettings 
     {
-        public string ConnectionString { get; set; }
-        public string DatabaseName { get; set; }
+        public static string ConnectionString { get; set; } = "mongodb://localhost:27017/";
+        public static string DatabaseName { get; set; } = "HotelBookingDB";
     }
 
 }

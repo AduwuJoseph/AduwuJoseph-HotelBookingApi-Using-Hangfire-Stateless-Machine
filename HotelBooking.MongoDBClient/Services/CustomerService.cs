@@ -11,10 +11,11 @@ namespace HotelBooking.MongoDBClient.Services
     {
         IEnumerable<Customer> GetAllCustomers();
         Task<Customer> GetByIdAsync(string id);
-        Task AddCustomer(Customer c);
+        Task<Customer> AddCustomer(Customer c);
         Task DeleteCustomer(string id);
         Task UpdateCustomer(Customer c);
         IEnumerable<Customer> GetCustomerByEmail(string email);
+        Customer GetCustomerByEmailToSignle(string email);
         IEnumerable<Customer> GetCustomerByGender(string gender);
     }
     public class CustomerService : ICustomerService
@@ -26,11 +27,12 @@ namespace HotelBooking.MongoDBClient.Services
             _customerRepository = customerRepository;
         }
 
-        public async Task AddCustomer(Customer c)
+        public async Task<Customer> AddCustomer(Customer c)
         {
             try
             {
                 await _customerRepository.InsertOneAsync(c);
+                return c;
             }
             catch(Exception e)
             {
@@ -41,6 +43,13 @@ namespace HotelBooking.MongoDBClient.Services
         public IEnumerable<Customer> GetCustomerByEmail(string email)
         {
             var c = _customerRepository.FilterBy(
+                filter => filter.Email == email
+            );
+            return c;
+        }
+        public Customer GetCustomerByEmailToSignle(string email)
+        {
+            var c = _customerRepository.FindOne(
                 filter => filter.Email == email
             );
             return c;

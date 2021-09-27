@@ -69,3 +69,13 @@ C:\Project\2021\HotelBookingApp\HotelBooking.Api\obj\Debug\net5.0\HotelBooking.A
 C:\Project\2021\HotelBookingApp\HotelBooking.Api\bin\Debug\net5.0\HotelBooking.MongoDBClient.dll
 C:\Project\2021\HotelBookingApp\HotelBooking.Api\bin\Debug\net5.0\HotelBooking.MongoDBClient.pdb
 C:\Project\2021\HotelBookingApp\HotelBooking.Api\bin\Debug\net5.0\stateless.dll
+C:\Project\2021\HotelBookingApp\HotelBooking.Api\bin\Debug\net5.0\HotelBooking.Api.Views.dll
+C:\Project\2021\HotelBookingApp\HotelBooking.Api\bin\Debug\net5.0\HotelBooking.Api.Views.pdb
+C:\Project\2021\HotelBookingApp\HotelBooking.Api\obj\Debug\net5.0\HotelBooking.Api.RazorAssemblyInfo.cache
+C:\Project\2021\HotelBookingApp\HotelBooking.Api\obj\Debug\net5.0\HotelBooking.Api.RazorAssemblyInfo.cs
+C:\Project\2021\HotelBookingApp\HotelBooking.Api\obj\Debug\net5.0\HotelBooking.Api.TagHelpers.input.cache
+C:\Project\2021\HotelBookingApp\HotelBooking.Api\obj\Debug\net5.0\HotelBooking.Api.TagHelpers.output.cache
+C:\Project\2021\HotelBookingApp\HotelBooking.Api\obj\Debug\net5.0\HotelBooking.Api.RazorCoreGenerate.cache
+C:\Project\2021\HotelBookingApp\HotelBooking.Api\obj\Debug\net5.0\Razor\EmailTemplate\BookingMsg.cshtml.g.cs
+C:\Project\2021\HotelBookingApp\HotelBooking.Api\obj\Debug\net5.0\HotelBooking.Api.RazorTargetAssemblyInfo.cs
+C:\Project\2021\HotelBookingApp\HotelBooking.Api\obj\Debug\net5.0\HotelBooking.Api.Views.pdb

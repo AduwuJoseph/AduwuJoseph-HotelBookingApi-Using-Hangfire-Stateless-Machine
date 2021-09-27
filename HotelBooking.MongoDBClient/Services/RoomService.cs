@@ -1,7 +1,9 @@
 ﻿using HotelBooking.MongoDBClient.Entities;
+using HotelBooking.MongoDBClient.Helpers;
 using HotelBooking.MongoDBClient.Infrastructures.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,13 +13,16 @@ namespace HotelBooking.MongoDBClient.Services
     {
         IEnumerable<Room> GetAllRooms();
         Task<Room> GetByIdAsync(string id);
-        Task AddRoom(Room room);
+        Task<Room> AddRoom(Room room);
         Task DeleteRoom(string id);
         Task UpdateRoom(Room r);
         IEnumerable<Room> GetRoomByStatus(string status);
         IEnumerable<Room> GetRoomByCost(decimal cost);
+        long TotalRooms();
+        int FreeRooms(string status);
+
     }
-    public class RoomService: IRoomService
+    public class RoomService : IRoomService
     {
         private readonly IHotelBookingMongoRepository<Room> _roomRepository;
 
@@ -26,11 +31,12 @@ namespace HotelBooking.MongoDBClient.Services
             _roomRepository = roomRepository;
         }
 
-        public async Task AddRoom(Room room)
+        public async Task<Room> AddRoom(Room room)
         {
             try
             {
                 await _roomRepository.InsertOneAsync(room);
+                return room;
             }
             catch(Exception e)
             {
@@ -72,6 +78,18 @@ namespace HotelBooking.MongoDBClient.Services
         public async Task UpdateRoom(Room r)
         {
             await _roomRepository.ReplaceOneAsync(r);
+        }
+
+        public long TotalRooms()
+        {
+            var rev = GetAllRooms();
+            return rev.Count();
+        }
+
+        public int FreeRooms(string status)
+        {
+            var rev = GetRoomByStatus(BookingStatus.Free).Count();
+            return rev;
         }
     }
 }

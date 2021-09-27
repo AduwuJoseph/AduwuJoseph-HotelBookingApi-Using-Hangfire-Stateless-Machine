@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -49,5 +50,7 @@ namespace HotelBooking.MongoDBClient.Infrastructures.Interfaces
         void DeleteMany(Expression<Func<TDocument, bool>> filterExpression);
 
         Task DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression);
+
+        Task<TDocument> AggregateAsync(PipelineDefinition<TDocument, IDocument> pipeline, AggregateOptions options = null);
     }
 }

@@ -11,13 +11,13 @@ namespace HotelBooking.MongoDBClient.Services
     {
         IEnumerable<HotelService> GetAllHotelServices();
         Task<HotelService> GetByIdAsync(string id);
-        Task AddHotelService(HotelService hs);
+        Task<HotelService> AddHotelService(HotelService hs);
         Task DeleteHotelService(string id);
         Task UpdateHotelService(HotelService r);
         IEnumerable<HotelService> GetHotelServiceByStatus(string status);
         IEnumerable<HotelService> GetHotelServiceByCost(decimal cost);
     }
-    public class HotelServiceService: IHotelServiceService
+    public class HotelServiceService : IHotelServiceService
     {
         private readonly IHotelBookingMongoRepository<HotelService> _hotelServiceRepository;
 
@@ -26,11 +26,12 @@ namespace HotelBooking.MongoDBClient.Services
             _hotelServiceRepository = hotelServiceRepository;
         }
 
-        public async Task AddHotelService(HotelService hs)
+        public async Task<HotelService> AddHotelService(HotelService hs)
         {
             try
             {
                 await _hotelServiceRepository.InsertOneAsync(hs);
+                return hs;
             }
             catch(Exception e)
             {

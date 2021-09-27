@@ -10,6 +10,7 @@ namespace HotelBooking.MongoDBClient.Entities
     [BsonCollection("bookings")]
     public class BookingDetails : Document
     {
+        public string BookingId { get; set; }
         public string ItemId { get; set; }
         public string ServiceType { get; set; } 
     }

@@ -1,4 +1,5 @@
 ﻿using HotelBooking.MongoDBClient.Helpers;
+using HotelBooking.MongoDBClient.Infrastructures;
 using HotelBooking.MongoDBClient.Infrastructures.Interfaces;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -15,10 +16,9 @@ namespace HotelBooking.MongoDBClient.Repositories
     where TDocument : IDocument
     {
         private readonly IMongoCollection<TDocument> _collection;
-
-        public HotelBookingMongoRepository(IDatabaseSettings settings)
+        public HotelBookingMongoRepository()
         {
-            var database = new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
+            var database = new MongoClient(DatabaseSettings.ConnectionString).GetDatabase(DatabaseSettings.DatabaseName);
             _collection = database.GetCollection<TDocument>(GetCollectionName(typeof(TDocument)));
         }
 
@@ -144,6 +144,11 @@ namespace HotelBooking.MongoDBClient.Repositories
         public Task DeleteManyAsync(Expression<Func<TDocument, bool>> filterExpression)
         {
             return Task.Run(() => _collection.DeleteManyAsync(filterExpression));
+        }
+
+        public Task<TDocument> AggregateAsync(PipelineDefinition<TDocument, IDocument> pipeline, AggregateOptions options = null)
+        {
+            throw new NotImplementedException();
         }
     }
 }

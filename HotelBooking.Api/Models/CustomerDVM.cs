@@ -29,5 +29,7 @@ namespace HotelBooking.Api.Models
 
         public DateTime CreatedAt { get; set; }
 
+        List<BookingDVM> Bookings { get; set; } = new List<BookingDVM>();
+
     }
 }

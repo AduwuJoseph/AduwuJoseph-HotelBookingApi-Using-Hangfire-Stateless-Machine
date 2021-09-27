@@ -21,11 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <None Include="EmailTemplate\BookingMsg.cshtml" />
     <None Include="Nlog.config" />
   </ItemGroup>
 
